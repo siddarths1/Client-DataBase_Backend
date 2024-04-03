@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
 
 // Create a model with the specified collection name
 
-
 // Connect to MongoDB
 let establishConnect = async () => {
     try {
