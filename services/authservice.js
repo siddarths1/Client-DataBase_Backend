@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const usermodel = require('../models/usermodel');
-const {JwtLogic }= require('../middleware/authMiddleware'); 
+const {JwtLogic, verifyToken }= require('../middleware/authMiddleware'); 
 const { User, getUsers } = require("../models/usermodel");
 
 
@@ -29,6 +29,14 @@ const loginService = async (getData) => {
             // Generate JWT token if password matches
             const createJwt = await JwtLogic({email:email});
             console.log("u r token is "+createJwt);
+            // verifies token 
+            const tokenStatus = verifyToken(createJwt);
+            console.log("token status "+tokenStatus);
+            //for token updation
+            const updatedToken = await usermodel.storeToken(email, createJwt);
+            console.log("Token updated");
+            return updatedToken;
+        
         } else {
             console.log("Password does not match");
             return null; // Return null or throw an error to indicate password mismatch

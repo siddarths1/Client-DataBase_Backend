@@ -13,8 +13,9 @@ const JwtLogic = async (payload)=>{
 // validity of tokens 
 
 const verifyToken = (token) => {
-    return jwt.verify(token, jwtSecret);
+    return jwt.verify(token, secretKey);
   };
+
 
 // redis setup
 const redis = require('redis')

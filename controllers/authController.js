@@ -10,13 +10,13 @@ const loginController = async (req, res) => {
         console.log("from contr "+userData);
         const token = await loginService(userData);
         if (token) {
-            res.status(200).send(token);
+            res.status(200).send("token is :"+token);
         } else {
-            res.status(400).send("Username or Password is incorrect");
+            res.status(400).send("Password is incorrect");
         }
     } catch (error) {
         console.error("Error in loginController:", error);
-        res.status(500).send("Unexpected error occurred");
+        res.status(500).send("Unexpected error occurred : Email is incorrect");
     }
 };
 

@@ -13,7 +13,7 @@ const hashPassword = async (newPassword) => {
     }
 }
 
-hashPassword("ats").then( 
+hashPassword("ats@2024").then( 
   (encryptedPassword)=>{console.log(encryptedPassword + "  finallyyy")
   module.exports = { encryptedPassword }
 }
