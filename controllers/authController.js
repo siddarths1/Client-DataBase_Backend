@@ -17,7 +17,8 @@ const loginController = async (req, res) => {
     } catch (error) {
         console.error("Error in loginController:", error);
         res.status(500).send("Unexpected error occurred : Email is incorrect");
-    }
+    } 
+    
 };
 
 
