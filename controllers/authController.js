@@ -1,7 +1,5 @@
 const { loginService } = require("../services/authservice");
 
-
-
 const loginController = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -18,7 +16,6 @@ const loginController = async (req, res) => {
         console.error("Error in loginController:", error);
         res.status(500).send("Unexpected error occurred : Email is incorrect");
     } 
-    
 };
 
 

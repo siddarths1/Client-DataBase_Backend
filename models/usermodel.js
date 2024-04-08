@@ -40,28 +40,4 @@ const storeToken = async (email, token) => {
     }
 };
 
-
-const listSchema = new mongoose.Schema({
-    client_id : { type : Number , required: true },
-    client_name : {type: String, required: true},
-    client_company_name : {type: String, required: true },
-    client_designation : {type: String, required: true},
-    client_phone : {type:Number, required: true},
-    client_email : {type:String },
-    user_email_sent : {type: Date },
-    client_email_reply :  {type: Date },
-    user_follow_up :  {type: Date },
-    meeting_held :  {type: Date },
-    client_enquiry_recieved : {type:String , enum:['yes','no'], default:'no'},
-    user_proposal_given : {type: String, enum: ['yes','no'], default:'no'},
-    remarks : {type: String},
-    created_at: {type:Date},
-    created_by: {type:String},
-    updated_at: {type:Date}, 
-    updated_by: {type:String}, 
-    status: { type: String, enum: ['active', 'inactive'], default: 'active'}
-})
-
-
-
 module.exports = { demo, getUsers,storeToken };
