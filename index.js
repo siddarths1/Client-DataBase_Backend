@@ -6,6 +6,7 @@ const routes = require("./routes/routes");
 const establishConnect = require("./db/db");
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Parse JSON bodies (as sent by API clients)
 app.use(bodyParser.json());
