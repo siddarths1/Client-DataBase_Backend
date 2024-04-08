@@ -11,7 +11,7 @@ const loginService = async (getData) => {
         // Finding user by email in the database
         console.log("eami"+email)
         console.log(typeof email)
-        console.log("hello")
+        
 
         const findUser = await usermodel.getUsers(email);
         console.log(findUser);
