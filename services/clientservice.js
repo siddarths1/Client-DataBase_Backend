@@ -36,18 +36,53 @@ const ClientService = {
     }
     },
 
-    async getClientService(req,res){
+    async getClientService(req){
         try{
-            // destructuring status from api header query parameter
+            // destructuring status, limit, offset, search , filterfrom api header query parameter
+            
             console.log("get client service");
-            const { status } = req.query;
-            console.log(status + " status");
+            const { status,limit,offset, } = req.query;
+            const {search} = req.body
+            const {filter} = req.body
+            console.log(filter+" filter is ");
+            // for searching specific data in list
+            if(filter){
+                try{    
+                    const resFilter = await clientmodel.filterCompanyName(filter)
+                    return resFilter;
+                }catch(Error){
+                    console.Error(Error);
+                }
+            }
+            else if(search){
+                try{
+                    if(typeof search === Number){
+
+                        const searchTextRes = await clientmodel.searchClientReqNo(search)
+                        return searchTextRes;
+
+                    }else if(typeof search === Date){
+
+                        const searchDate = await clientmodel.searchClientDate(search)
+                        return searchDate;
+
+                    }else{
+                        const searchText = await clientmodel.searchClientText(search)
+                        return searchText;
+                    }
+                }catch(Error){
+                    console.error(Error);
+                }
+            }else{
+            console.log("at service to fetch list");
             // to write logic to fetch all users irrespective of status 
             const getUsers = await clientmodel.getClientList(status)
             if (getUsers.length === 0) {
                 throw Error;
             }
             return getUsers;
+        }
+            
         }catch(Error){
             console.error(error);
             throw Error;

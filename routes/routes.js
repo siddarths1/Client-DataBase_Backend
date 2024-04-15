@@ -10,11 +10,11 @@ router.post('/login',loginController)
 // to create new users list we 
 router.post('/login/createClients',clientController.createClient)
 
-// to get client's list 
+// to get client's list , search , pagination , filter 
 router.get('/login/viewClients', clientController.viewClient)
 
 //to filter and search client's list
-router.get('/login/')
+
 
 
 // router.post('/demo',democall.call)

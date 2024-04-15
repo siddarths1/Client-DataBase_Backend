@@ -17,13 +17,21 @@ const clientController = {
 },
     async viewClient(req,res){
         try{
-            console.log("at controller");
-            let clientservice = await service.getClientService(req)
-            if(clientservice){
-                 res.status(200).send(clientservice);
-            }
-            else{
-                res.status(400).send("no records found");
+            const {limit, offset,status} = req.query;
+                console.log(limit+offset+status+" for view list");
+                if(limit==undefined || offset ==undefined){
+                    res.status(400).send("Bad Request to server")
+                    return;
+                }
+                else{
+                    console.log("at controller");
+                    let clientservice = await service.getClientService(req)
+                    if(clientservice){
+                        res.status(200).send(clientservice);
+                    }
+                    else{
+                        res.status(400).send("no records found");
+                    }
             }
         }catch(Error){
             res.status(400).send("Unexpected Error : no records found ");
