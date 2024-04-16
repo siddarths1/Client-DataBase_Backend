@@ -21,6 +21,10 @@ const listSchema = new mongoose.Schema({
     status: { type: String, enum: ['active', 'inactive'], default: 'active'}
 })
 
+listSchema.plugin(autoIncrement.plugin, { model: 'clientmodels', field: 'client_id', startAt: 1 });
+
+// inorder to create new client list 
+const clientmodels = mongoose.model('clientusers',listSchema)
 
 const getClientList = async(req,res)=>{
     try{
@@ -33,11 +37,6 @@ const getClientList = async(req,res)=>{
       throw Error;
     }
 }
-
-
-
-// inorder to create new client list 
-const clientmodels = mongoose.model('clientusers',listSchema)
 
 const createClientModel = async(data)=>{
     try{

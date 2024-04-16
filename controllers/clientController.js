@@ -14,7 +14,7 @@ const clientController = {
         // throw Error;
     }
 
-},
+    },
     async viewClient(req,res){
         try{
             const {limit, offset,status} = req.query;
@@ -36,6 +36,22 @@ const clientController = {
         }catch(Error){
             res.status(400).send("Unexpected Error : no records found ");
         }
+    },
+    // to add Remarks
+    async addRemark(req,res){
+        try{
+            const{client_id} = req.query
+            const{remarks} = req.body;
+            console.log("id + res remark "+  typeof client_id);
+            const addRemarkService = await service.addRemarkService(client_id, remarks)   
+            res.status(200).send("remarks added "+addRemarkService)
+
+        }catch(Error){
+
+            res.status(400).send("check client id "+ Error);
+
+        }
+
     }
 } 
 

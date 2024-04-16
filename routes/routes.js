@@ -13,7 +13,8 @@ router.post('/login/createClients',clientController.createClient)
 // to get client's list , search , pagination , filter 
 router.get('/login/viewClients', clientController.viewClient)
 
-//to filter and search client's list
+//to add new remarks for the client
+router.post('/login/viewClients/addRemark', clientController.addRemark)
 
 
 

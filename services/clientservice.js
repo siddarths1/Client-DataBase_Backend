@@ -82,12 +82,24 @@ const ClientService = {
             }
             return getUsers;
         }
-            
         }catch(Error){
             console.error(error);
             throw Error;
         }
+    },
+    async addRemarkService(getClientId, getRemarks){
+        try{
 
+            console.log("onto remark service "+ getClientId + getRemarks);
+            // passing id to models to write mongoose query
+            const addRemarkModel = await clientmodel.addRemarkModel(getClientId, getRemarks);
+            return addRemarkModel;
+
+        }catch(Error){
+
+            return Error;
+
+        }
     }
 
 }
