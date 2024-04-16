@@ -87,6 +87,17 @@ const ClientService = {
             throw Error;
         }
     },
+    async getSpecificClient(client_id){
+        try{
+            console.log("specific controller");
+            const getSpecClient = await clientmodel.getSpecClientModel(client_id);
+            return getSpecClient;
+
+        }catch(Error){
+            console.error(Error)
+            return Error;
+        }
+    },
     async addRemarkService(getClientId, getRemarks){
         try{
 
@@ -103,7 +114,7 @@ const ClientService = {
     },
     async viewRemarks(client_Id){
         try{
-
+            console.log(client_Id + "on view re mark controller");
             const viewRemarksModel = await clientmodel.viewRemarkModel(client_Id);
             return viewRemarksModel;
 

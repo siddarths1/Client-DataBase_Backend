@@ -13,6 +13,9 @@ router.post('/login/createClients',clientController.createClient)
 // to get client's list , search , pagination , filter 
 router.get('/login/viewClients', clientController.viewClient)
 
+// get specific clients data
+router.get('/login/getSpecificClients', clientController.getClient)
+
 //to add new remarks for the client
 router.post('/login/viewClients/addRemark', clientController.addRemark)
 
