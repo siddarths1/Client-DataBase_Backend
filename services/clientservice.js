@@ -100,6 +100,18 @@ const ClientService = {
             return Error;
 
         }
+    },
+    async viewRemarks(client_Id){
+        try{
+
+            const viewRemarksModel = await clientmodel.viewRemarkModel(client_Id);
+            return viewRemarksModel;
+
+        }catch(Error){
+
+            return Error;
+
+        }
     }
 
 }

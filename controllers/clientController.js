@@ -51,7 +51,19 @@ const clientController = {
             res.status(400).send("check client id "+ Error);
 
         }
+    },
+    async viewRemark(req,res){
+        try{
 
+            const {client_id} = req.params
+            const viewRemarkService = await service.viewRemarks(req) 
+            res.status(200).send("view client Remarks "+ viewRemarkService)
+
+        }catch(Error){
+
+            res.status(400).send("Error in viewing remarks "+ Error)
+
+        }
     }
 } 
 

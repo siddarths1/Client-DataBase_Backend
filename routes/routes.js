@@ -16,7 +16,8 @@ router.get('/login/viewClients', clientController.viewClient)
 //to add new remarks for the client
 router.post('/login/viewClients/addRemark', clientController.addRemark)
 
-
+//to view remarks from the client in db
+router.get('/login/viewClients/viewRemark', clientController.viewRemark)
 
 // router.post('/demo',democall.call)
 
