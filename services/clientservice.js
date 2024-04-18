@@ -1,7 +1,7 @@
 const clientmodel = require("../models/clientmodel");
 
 const ClientService = {
-  
+    // client list 
     async createService(data){
         try{
             // const{
@@ -52,6 +52,7 @@ const ClientService = {
                     return resFilter;
                 }catch(Error){
                     console.Error(Error);
+                    return Error
                 }
             }
             else if(search){
@@ -87,10 +88,10 @@ const ClientService = {
             throw Error;
         }
     },
-    async getSpecificClient(client_id){
+    async getSpecificClient(clientId){
         try{
             console.log("specific controller");
-            const getSpecClient = await clientmodel.getSpecClientModel(client_id);
+            const getSpecClient = await clientmodel.getSpecClientModel(clientId);
             return getSpecClient;
 
         }catch(Error){
@@ -98,6 +99,7 @@ const ClientService = {
             return Error;
         }
     },
+    //remarks 
     async addRemarkService(getClientId, getRemarks){
         try{
 
@@ -120,6 +122,25 @@ const ClientService = {
 
         }catch(Error){
 
+            return Error;
+
+        }
+    },
+    // dashboard
+    async getDashboardCount(){
+        try{
+            const presentDate = new Date();
+            const weekAgo = new Date(presentDate)
+            weekAgo.setDate(presentDate.getDate()-7)
+            console.log("Today:", presentDate.toISOString());
+            console.log("7 days ago:", weekAgo.toISOString());
+            console.log("onto dashboard service");
+            const getCountCard = await clientmodel.getDashboardCard(weekAgo)
+            return getCountCard;
+
+        }catch(Error){
+
+            console.error(Error);
             return Error;
 
         }

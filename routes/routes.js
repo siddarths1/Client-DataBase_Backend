@@ -22,6 +22,9 @@ router.post('/login/viewClients/addRemark', clientController.addRemark)
 //to view remarks from the client in db
 router.get('/login/viewClients/viewRemark', clientController.viewRemark)
 
-// router.post('/demo',democall.call)
+// dashboard 
+// number of clients API with filters
+router.get('/login/dashboard/counts', clientController.dashboardCount)
+
 
 module.exports = router;

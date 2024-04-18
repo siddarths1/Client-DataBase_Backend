@@ -1,4 +1,8 @@
+const { default: mongoose } = require('mongoose');
 const service = require('../services/clientservice') 
+const ObjectId = require('bson-objectid')
+
+
 
 const clientController = {
     async createClient(req, res){
@@ -34,14 +38,16 @@ const clientController = {
                     }
             }
         }catch(Error){
-            res.status(400).send("Unexpected Error : no records found ");
+            res.status(400).send("Unexpected Error : no records found "+Error);
         }
     },
 
     async getClient(req,res){
         try{
-            const {client_id} = req.query
-            console.log(client_id + "sp");
+            const {client_id} = req.query;
+            console.log(client_id);
+            const objNum = '661e0178c79fab699c3733eb';
+            console.log(typeof _id + "sp");
             const getclientService = await service.getSpecificClient(client_id)
             res.status(200).send("requested data "+getclientService)
 
@@ -54,10 +60,10 @@ const clientController = {
     // to add Remarks
     async addRemark(req,res){
         try{
-            const{client_id} = req.query
+            const{_id} = req.query
             const{remarks} = req.body;
-            console.log("id + res remark "+  typeof client_id);
-            const addRemarkService = await service.addRemarkService(client_id, remarks)   
+            console.log("id + res remark "+  typeof _id);
+            const addRemarkService = await service.addRemarkService(_id, remarks)   
             res.status(200).send("remarks added "+addRemarkService)
 
         }catch(Error){
@@ -69,14 +75,27 @@ const clientController = {
     async viewRemark(req,res){
         try{
 
-            const {client_id} = req.query
-            console.log("params view remark "+ client_id);
-            const viewRemarkService = await service.viewRemarks(client_id) 
+            const {_id} = req.query
+            console.log("params view remark "+ _id);
+            const viewRemarkService = await service.viewRemarks(_id) 
             res.status(200).send("view client Remarks "+ viewRemarkService)
 
         }catch(Error){
 
             res.status(400).send("Error in viewing remarks "+ Error)
+
+        }
+    },
+    async dashboardCount(req,res){
+        try{
+            // calling service 
+            console.log("onto dashboard controller");
+            const cardCount = await service.getDashboardCount();
+            res.status(200).send(cardCount)
+
+        }catch(Error){
+
+            res.status(400).send(Error)
 
         }
     }
