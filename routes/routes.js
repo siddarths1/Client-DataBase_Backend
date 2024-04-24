@@ -3,7 +3,6 @@ const router = express.Router();
 const loginController = require('../controllers/authController')
 const clientController = require('../controllers/clientController')
 
-const democall = require('../demo')
 // post method for storing login credentials
 router.post('/login',loginController)
 
@@ -25,6 +24,9 @@ router.get('/login/viewClients/viewRemark', clientController.viewRemark)
 // dashboard 
 // number of clients API with filters
 router.get('/login/dashboard/counts', clientController.dashboardCount)
+
+router.get('/login/dashboard/enquiryGraph', clientController.enquiryGraph)
+
 
 
 module.exports = router;

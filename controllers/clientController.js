@@ -1,6 +1,4 @@
-const { default: mongoose } = require('mongoose');
 const service = require('../services/clientservice') 
-const ObjectId = require('bson-objectid')
 
 
 
@@ -8,13 +6,13 @@ const clientController = {
     async createClient(req, res){
     try
     {
-        let clientservice = await service.createService(req.body)     
-        res.status(200).send("Client list created successfully")
+        const clientservice = await service.createService(req.body)     
+        res.status(200).send("Client list created successfully "+ clientservice)
     }
-    catch(error)
+    catch(Error)
     {
-        console.log(error);
-        res.status(400).send("Unexpected Error : could not create");
+        console.log(Error);
+        res.status(400).send("Unexpected Error : could not create "+ Error) ;
         // throw Error;
     }
 
@@ -24,12 +22,12 @@ const clientController = {
             const {limit, offset,status} = req.query;
                 console.log(limit+offset+status+" for view list");
                 if(limit==undefined || offset ==undefined){
-                    res.status(400).send("Bad Request to server")
+                    res.status(400).send("Bad Request to server : undefined")
                     return;
                 }
                 else{
                     console.log("at controller");
-                    let clientservice = await service.getClientService(req)
+                    const clientservice = await service.getClientService(req)
                     if(clientservice){
                         res.status(200).send(clientservice);
                     }
@@ -97,6 +95,30 @@ const clientController = {
 
             res.status(400).send(Error)
 
+        }
+    },
+    async enquiryGraph(req, res) {
+        try {
+            console.log("onto cont graph");
+            console.log(req.body);
+            const enquiryResp = await service.getEnquiryCount(req.body);
+            console.log(enquiryResp);
+            // structuring the api format
+            const enqDashBoard = {
+                labels: ['Yes', 'No'],
+                datasets: [{
+                    label: 'Enquiry Proposal',
+                    data: [enquiryResp],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            res.status(200).json(enqDashBoard);
+        } catch (error) {
+            res.status(400).send(error + " errorr");
         }
     }
 } 

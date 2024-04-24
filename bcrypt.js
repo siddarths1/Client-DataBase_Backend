@@ -6,16 +6,15 @@ const hashPassword = async (newPassword) => {
         const getEncryptPass = await bcrypt.hash(newPassword, salt);
         console.log("bcrypt function pass " + getEncryptPass );
         return getEncryptPass;
-        
     } catch (error) {
         console.error('Error encrypting passwords:', error);
         return false;
     }
 }
 
-hashPassword("ats@2024").then( 
-  (encryptedPassword)=>{console.log(encryptedPassword + "  finallyyy")
-  module.exports = { encryptedPassword }
-}
-
-)
+hashPassword("ats@2024").then((encryptedPassword)=>{
+    console.log(encryptedPassword + " encrypted password")
+    module.exports = { encryptedPassword }
+}).catch((Error)=>{
+    console.log(Error + " Error during password hashing");
+})

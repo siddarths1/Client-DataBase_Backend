@@ -5,7 +5,7 @@ const { User, getUsers } = require("../models/usermodel");
 
 
 const loginService = async (getData) => {
-    let { email, password } = getData;
+    const { email, password } = getData;
     console.log("get data"+getData);
     try {
         // Finding user by email in the database

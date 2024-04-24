@@ -45,10 +45,14 @@ const ClientService = {
             const {search} = req.body
             const {filter} = req.body
             console.log(filter+" filter is ");
+            // setting up offset 
+            const offsetReturn = limit*(offset-1);
+            console.log( offsetReturn + " page ret value");
+
             // for searching specific data in list
             if(filter){
                 try{    
-                    const resFilter = await clientmodel.filterCompanyName(filter)
+                    const resFilter = await clientmodel.filterCompanyName(filter, offsetReturn,limit)
                     return resFilter;
                 }catch(Error){
                     console.Error(Error);
@@ -59,16 +63,16 @@ const ClientService = {
                 try{
                     if(typeof search === Number){
 
-                        const searchTextRes = await clientmodel.searchClientReqNo(search)
+                        const searchTextRes = await clientmodel.searchClientReqNo(search, offsetReturn,limit)
                         return searchTextRes;
 
                     }else if(typeof search === Date){
 
-                        const searchDate = await clientmodel.searchClientDate(search)
+                        const searchDate = await clientmodel.searchClientDate(search, offsetReturn, limit)
                         return searchDate;
 
                     }else{
-                        const searchText = await clientmodel.searchClientText(search)
+                        const searchText = await clientmodel.searchClientText(search, offsetReturn,limit)
                         return searchText;
                     }
                 }catch(Error){
@@ -77,7 +81,7 @@ const ClientService = {
             }else{
             console.log("at service to fetch list");
             // to write logic to fetch all users irrespective of status 
-            const getUsers = await clientmodel.getClientList(status)
+            const getUsers = await clientmodel.getClientList(status, offsetReturn, limit)
             if (getUsers.length === 0) {
                 throw Error;
             }
@@ -144,8 +148,22 @@ const ClientService = {
             return Error;
 
         }
-    }
-
+    },
+    async getEnquiryCount(req) {
+        try {
+            console.log("onto service " + req.start_date);
+            const startDate = req.start_date;
+            const toCheckDate = new Date(startDate);
+            console.log(toCheckDate);
+            if (isNaN(toCheckDate)) {
+                throw new Error('Invalid date format');
+            }
+            const getEnqCount = await clientmodel.getEnquiryCount(toCheckDate.toISOString());
+            return getEnqCount;
+        } catch (error) {
+            return error;
+        }
+    },    
 }
 
 module.exports = ClientService;

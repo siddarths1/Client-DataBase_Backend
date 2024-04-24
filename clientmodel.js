@@ -48,11 +48,7 @@ const createClientModel = async(data)=>{
         console.log(error);
         throw Error;
     }
-
 }
-
-
-
 // const clients = new clientmodels({
 //     client_id : 39,
 //     client_name : 'Gopi ',

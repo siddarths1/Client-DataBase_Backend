@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 
 try {
   establishConnect();
-} catch (error) {
-  console.log(error);
+} catch(Error) {
+  console.log(Error);
 }
 
 
