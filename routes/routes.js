@@ -10,7 +10,7 @@ router.post('/login',loginController)
 router.post('/login/createClients',clientController.createClient)
 
 // to get client's list , search , pagination , filter 
-router.get('/login/viewClients', clientController.viewClient)
+router.post('/login/viewClients', clientController.viewClient)
 
 // get specific clients data
 router.get('/login/getSpecificClients', clientController.getClient)

@@ -132,7 +132,7 @@ const ClientService = {
     },
     // dashboard
     async getDashboardCount(){
-        try{
+        try{ 
             const presentDate = new Date();
             const weekAgo = new Date(presentDate)
             weekAgo.setDate(presentDate.getDate()-7)
