@@ -15,6 +15,9 @@ router.post('/login/viewClients', clientController.viewClient)
 // get specific clients data
 router.get('/login/getSpecificClients', clientController.getClient)
 
+//to edit client's list ( pavithra ) 
+router.patch('/login/editClients',clientController.edit)
+
 //to add new remarks for the client
 router.post('/login/viewClients/addRemark', clientController.addRemark)
 

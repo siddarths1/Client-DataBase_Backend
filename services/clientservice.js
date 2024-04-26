@@ -102,6 +102,20 @@ const ClientService = {
             return Error;
         }
     },
+
+    //to edit client's list ( pavithra ) 
+    async editClientService(clientId, clientData) {
+        try {
+            //console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>clientData-------------106",clientData);
+            // Assuming clientmodel.editclient returns a promise
+            const updatedClient = await clientmodel.editClient(clientId, clientData);
+            console.log(">>>>>>)))))))-------------109",updatedClient)
+            return updatedClient;
+        } catch (error) {
+            return Error;
+        }
+    },
+
     //remarks 
     async addRemarkService(getClientId, getRemarks){
         try{

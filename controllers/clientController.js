@@ -55,6 +55,31 @@ const clientController = {
         }
     },
 
+    //to edit client's list ( pavithra ) 
+    async edit(req, res) {
+        console.log("***************req------------------ 57",req.body);
+        try {
+            const{_id} = req.query
+            const {  client_name, client_company_name, client_designation, client_phone, client_email, user_email_sent, client_email_reply, user_follow_up, meeting_held, client_enquiry_received, user_proposal_given, remarks, updated_at, updated_by, status } = req.body;
+
+            console.log("editClientService");
+
+            //edit remark
+            // console.log(client_id + remarks);
+            // const editClientRemarks = await service.editClientRemarks(client_id,remarks).then(()=>{
+            //     console.log("success promise")
+            // }).catch((error)=>{
+            //     console.log("*************error******", error);
+            // });
+
+            const editClientServiceResult = await service.editClientService(_id, { client_name, client_company_name, client_designation, client_phone, client_email, user_email_sent, client_email_reply, user_follow_up, meeting_held, client_enquiry_received, user_proposal_given, remarks, updated_at, updated_by, status });
+
+            res.status(200).send(editClientServiceResult);
+        } catch (Error) {
+            res.status(400).send("Error editing client: " + Error);
+        }
+    },
+
     // to add Remarks
     async addRemark(req,res){
         try{
