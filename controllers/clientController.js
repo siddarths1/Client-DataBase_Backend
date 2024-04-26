@@ -21,11 +21,11 @@ const clientController = {
         try{
             const {limit, offset,status} = req.query;
                 console.log(limit+offset+status+" for view list");
-                if(limit==undefined || offset ==undefined){
-                    res.status(400).send("Bad Request to server : undefined")
-                    return;
-                }
-                else{
+                // if(limit==undefined || offset ==undefined){
+                //     res.status(400).send("Bad Request to server : undefined")
+                //     return;
+                // }
+                // else{
                     console.log("at controller");
                     const clientservice = await service.getClientService(req)
                     if(clientservice){
@@ -34,7 +34,7 @@ const clientController = {
                     else{
                         res.status(400).send("no records found");
                     }
-            }
+            //}
         }catch(Error){
             res.status(400).send("Unexpected Error : no records found "+Error);
         }

@@ -46,13 +46,12 @@ const ClientService = {
             const {filter} = req.body
             console.log(filter+" filter is ");
             // setting up offset 
-            const offsetReturn = limit*(offset-1);
-            console.log( offsetReturn + " page ret value");
+           
 
             // for searching specific data in list
             if(filter){
                 try{    
-                    const resFilter = await clientmodel.filterCompanyName(filter, offsetReturn,limit)
+                    const resFilter = await clientmodel.filterCompanyName(filter)
                     return resFilter;
                 }catch(Error){
                     console.Error(Error);
@@ -63,16 +62,16 @@ const ClientService = {
                 try{
                     if(typeof search === Number){
 
-                        const searchTextRes = await clientmodel.searchClientReqNo(search, offsetReturn,limit)
+                        const searchTextRes = await clientmodel.searchClientReqNo(search)
                         return searchTextRes;
 
                     }else if(typeof search === Date){
 
-                        const searchDate = await clientmodel.searchClientDate(search, offsetReturn, limit)
+                        const searchDate = await clientmodel.searchClientDate(search)
                         return searchDate;
 
                     }else{
-                        const searchText = await clientmodel.searchClientText(search, offsetReturn,limit)
+                        const searchText = await clientmodel.searchClientText(search)
                         return searchText;
                     }
                 }catch(Error){
@@ -81,7 +80,7 @@ const ClientService = {
             }else{
             console.log("at service to fetch list");
             // to write logic to fetch all users irrespective of status 
-            const getUsers = await clientmodel.getClientList(status, offsetReturn, limit)
+            const getUsers = await clientmodel.getClientList()
             if (getUsers.length === 0) {
                 throw Error;
             }
