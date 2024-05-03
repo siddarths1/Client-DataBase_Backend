@@ -110,7 +110,11 @@ const ClientService = {
                 client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
-                status: getSpecClient?.status
+                status: getSpecClient?.status,
+                created_at: new Date(getSpecClient?.created_at).toLocaleDateString('en-GB',dateOptions),
+                created_by: 'ats',
+                updated_at: new Date(getSpecClient?.updated_at).toLocaleDateString('en-GB',dateOptions),
+                updated_by: 'admin'
             }
             return getSpecObject;
 
@@ -142,6 +146,10 @@ const ClientService = {
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
                 status: getSpecClient?.status,
+                created_at: new Date(getSpecClient?.created_at).toLocaleDateString('en-GB',dateOptions),
+                created_by: 'ats',
+                updated_at: new Date(getSpecClient?.updated_at).toLocaleDateString('en-GB',dateOptions),
+                updated_by: 'admin'
             }
             return UpdatedObject;
         } catch (Error) {
