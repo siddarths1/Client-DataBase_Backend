@@ -106,14 +106,15 @@ const ClientService = {
                 user_email_sent: getSpecClient?.user_email_sent,
                 client_email_reply:getSpecClient?.client_email_reply,
                 meeting_held: getSpecClient?.meeting_held,
+                user_follow_up: getSpecClient?.user_follow_up,
                 client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
                 status: getSpecClient?.status,
                 created_at: getSpecClient?.created_at,
-                created_by: 'ats',
+                created_by: getSpecClient?.created_by,
                 updated_at: getSpecClient?.updated_at,
-                updated_by: 'admin'
+                updated_by: getSpecClient?.updated_by
             }
             return getSpecObject;
 
@@ -131,24 +132,25 @@ const ClientService = {
             const updatedClient = await clientmodel.editClient(clientId, clientData);
             console.log(">>>>>>)))))))-------------109",updatedClient)
             const UpdatedObject = {
-                _id: getSpecClient?._id.toString(),
-                client_name: getSpecClient?.client_name,
-                client_company_name: getSpecClient?.client_company_name,
-                client_designation: getSpecClient?.client_designation,
-                client_phone: getSpecClient?.client_phone,
-                client_email: getSpecClient?.client_email,
-                user_email_sent: getSpecClient?.user_email_sent,
-                client_email_reply: getSpecClient?.client_email_reply,
-                user_follow_up: getSpecClient?.user_follow_up,
-                meeting_held: getSpecClient?.meeting_held,
-                client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
-                user_proposal_given: getSpecClient?.user_proposal_given,
-                remarks: getSpecClient?.remarks,
-                status: getSpecClient?.status,
-                created_at: getSpecClient?.created_at,
-                created_by: 'ats',
-                updated_at: getSpecClient?.updated_at,
-                updated_by: 'admin'
+                _id: updatedClient?._id.toString(),
+                client_name: updatedClient?.client_name,
+                client_company_name: updatedClient?.client_company_name,
+                client_designation: updatedClient?.client_designation,
+                client_phone: updatedClient?.client_phone,
+                client_email: updatedClient?.client_email,
+                user_email_sent: updatedClient?.user_email_sent,
+                client_email_reply: updatedClient?.client_email_reply,
+                user_follow_up: updatedClient?.user_follow_up,
+                meeting_held: updatedClient?.meeting_held,
+                client_enquiry_recieved: updatedClient?.client_enquiry_recieved,
+                user_proposal_given: updatedClient?.user_proposal_given,
+                user_follow_up : updatedClient?.user_follow_up,
+                remarks: updatedClient?.remarks,
+                status: updatedClient?.status,
+                created_at: updatedClient?.created_at,
+                created_by: updatedClient?.created_by,
+                updated_at: updatedClient?.updated_at,
+                updated_by: updatedClient?.updated_by
             }
             return UpdatedObject;
         } catch (Error) {
