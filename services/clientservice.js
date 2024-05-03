@@ -95,7 +95,7 @@ const ClientService = {
         try{
             console.log("specific controller");
             const getSpecClient = await clientmodel.getSpecClientModel(clientId);
-            const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
             const getSpecObject = {
                 _id: getSpecClient?._id.toString(),
                 client_name: getSpecClient?.client_name,
@@ -103,17 +103,16 @@ const ClientService = {
                 client_designation: getSpecClient?.client_designation,
                 client_phone: getSpecClient?.client_phone,
                 client_email: getSpecClient?.client_email,
-                user_email_sent: new Date(getSpecClient?.user_email_sent).toLocaleDateString('en-GB',dateOptions),
-                client_email_reply: new Date(getSpecClient?.client_email_reply).toLocaleDateString('en-GB',dateOptions),
-                user_follow_up: new Date(getSpecClient?.user_follow_up).toLocaleDateString('en-GB',dateOptions),
-                meeting_held: new Date(getSpecClient?.meeting_held).toLocaleDateString('en-GB',dateOptions),
+                user_email_sent: getSpecClient?.user_email_sent,
+                client_email_reply:getSpecClient?.client_email_reply,
+                meeting_held: getSpecClient?.meeting_held,
                 client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
                 status: getSpecClient?.status,
-                created_at: new Date(getSpecClient?.created_at).toLocaleDateString('en-GB',dateOptions),
+                created_at: getSpecClient?.created_at,
                 created_by: 'ats',
-                updated_at: new Date(getSpecClient?.updated_at).toLocaleDateString('en-GB',dateOptions),
+                updated_at: getSpecClient?.updated_at,
                 updated_by: 'admin'
             }
             return getSpecObject;
@@ -138,17 +137,17 @@ const ClientService = {
                 client_designation: getSpecClient?.client_designation,
                 client_phone: getSpecClient?.client_phone,
                 client_email: getSpecClient?.client_email,
-                user_email_sent: new Date(getSpecClient?.user_email_sent).toLocaleDateString('en-GB',dateOptions),
-                client_email_reply: new Date(getSpecClient?.client_email_reply).toLocaleDateString('en-GB',dateOptions),
-                user_follow_up: new Date(getSpecClient?.user_follow_up).toLocaleDateString('en-GB',dateOptions),
-                meeting_held: new Date(getSpecClient?.meeting_held).toLocaleDateString('en-GB',dateOptions),
+                user_email_sent: getSpecClient?.user_email_sent,
+                client_email_reply: getSpecClient?.client_email_reply,
+                user_follow_up: getSpecClient?.user_follow_up,
+                meeting_held: getSpecClient?.meeting_held,
                 client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
                 status: getSpecClient?.status,
-                created_at: new Date(getSpecClient?.created_at).toLocaleDateString('en-GB',dateOptions),
+                created_at: getSpecClient?.created_at,
                 created_by: 'ats',
-                updated_at: new Date(getSpecClient?.updated_at).toLocaleDateString('en-GB',dateOptions),
+                updated_at: getSpecClient?.updated_at,
                 updated_by: 'admin'
             }
             return UpdatedObject;
