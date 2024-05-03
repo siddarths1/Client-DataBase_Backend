@@ -110,7 +110,7 @@ const ClientService = {
                 client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
                 user_proposal_given: getSpecClient?.user_proposal_given,
                 remarks: getSpecClient?.remarks,
-                status: getSpecClient?.status,
+                status: getSpecClient?.status
             }
             return getSpecObject;
 
