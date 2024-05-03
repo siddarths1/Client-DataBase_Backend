@@ -95,7 +95,24 @@ const ClientService = {
         try{
             console.log("specific controller");
             const getSpecClient = await clientmodel.getSpecClientModel(clientId);
-            return getSpecClient;
+            const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const getSpecObject = {
+                _id: getSpecClient?._id.toString(),
+                client_name: getSpecClient?.client_name,
+                client_company_name: getSpecClient?.client_company_name,
+                client_designation: getSpecClient?.client_designation,
+                client_phone: getSpecClient?.client_phone,
+                client_email: getSpecClient?.client_email,
+                user_email_sent: new Date(getSpecClient?.user_email_sent).toLocaleDateString('en-GB',dateOptions),
+                client_email_reply: new Date(getSpecClient?.client_email_reply).toLocaleDateString('en-GB',dateOptions),
+                user_follow_up: new Date(getSpecClient?.user_follow_up).toLocaleDateString('en-GB',dateOptions),
+                meeting_held: new Date(getSpecClient?.meeting_held).toLocaleDateString('en-GB',dateOptions),
+                client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
+                user_proposal_given: getSpecClient?.user_proposal_given,
+                remarks: getSpecClient?.remarks,
+                status: getSpecClient?.status,
+            }
+            return getSpecObject;
 
         }catch(Error){
             console.error(Error)
@@ -110,8 +127,24 @@ const ClientService = {
             // Assuming clientmodel.editclient returns a promise
             const updatedClient = await clientmodel.editClient(clientId, clientData);
             console.log(">>>>>>)))))))-------------109",updatedClient)
-            return updatedClient;
-        } catch (error) {
+            const UpdatedObject = {
+                _id: getSpecClient?._id.toString(),
+                client_name: getSpecClient?.client_name,
+                client_company_name: getSpecClient?.client_company_name,
+                client_designation: getSpecClient?.client_designation,
+                client_phone: getSpecClient?.client_phone,
+                client_email: getSpecClient?.client_email,
+                user_email_sent: new Date(getSpecClient?.user_email_sent).toLocaleDateString('en-GB',dateOptions),
+                client_email_reply: new Date(getSpecClient?.client_email_reply).toLocaleDateString('en-GB',dateOptions),
+                user_follow_up: new Date(getSpecClient?.user_follow_up).toLocaleDateString('en-GB',dateOptions),
+                meeting_held: new Date(getSpecClient?.meeting_held).toLocaleDateString('en-GB',dateOptions),
+                client_enquiry_recieved: getSpecClient?.client_enquiry_recieved,
+                user_proposal_given: getSpecClient?.user_proposal_given,
+                remarks: getSpecClient?.remarks,
+                status: getSpecClient?.status,
+            }
+            return UpdatedObject;
+        } catch (Error) {
             return Error;
         }
     },
@@ -126,9 +159,7 @@ const ClientService = {
             return addRemarkModel;
 
         }catch(Error){
-
             return Error;
-
         }
     },
     async viewRemarks(client_Id){
@@ -157,7 +188,6 @@ const ClientService = {
 
         }catch(Error){
 
-            console.error(Error);
             return Error;
 
         }

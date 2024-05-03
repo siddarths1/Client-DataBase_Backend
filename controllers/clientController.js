@@ -7,12 +7,12 @@ const clientController = {
     try
     {
         const clientservice = await service.createService(req.body)     
-        res.status(200).send("Client list created successfully "+ clientservice)
+        res.status(200).send(clientservice)
     }
     catch(Error)
     {
         console.log(Error);
-        res.status(400).send("Unexpected Error : could not create "+ Error) ;
+        res.status(400).send(Error) ;
         // throw Error;
     }
 
@@ -36,7 +36,7 @@ const clientController = {
                     }
             //}
         }catch(Error){
-            res.status(400).send("Unexpected Error : no records found "+Error);
+            res.status(400).send(Error);
         }
     },
 
@@ -47,17 +47,17 @@ const clientController = {
             const objNum = '661e0178c79fab699c3733eb';
             console.log(typeof _id + "sp");
             const getclientService = await service.getSpecificClient(client_id)
-            res.status(200).send("requested data "+getclientService)
+            res.status(200).send(getclientService)
 
         }catch(Error){
             console.error(Error);
-            res.status(400).send(Error+" failed")
+            res.status(400).send(Error)
         }
     },
 
     //to edit client's list ( pavithra ) 
     async edit(req, res) {
-        console.log("***************req------------------ 57",req.body);
+        console.log("*********req--------- 57",req.body);
         try {
             const{_id} = req.query
             const {  client_name, client_company_name, client_designation, client_phone, client_email, user_email_sent, client_email_reply, user_follow_up, meeting_held, client_enquiry_received, user_proposal_given, remarks, updated_at, updated_by, status } = req.body;
@@ -76,7 +76,7 @@ const clientController = {
 
             res.status(200).send(editClientServiceResult);
         } catch (Error) {
-            res.status(400).send("Error editing client: " + Error);
+            res.status(400).send(Error);
         }
     },
 
@@ -87,11 +87,11 @@ const clientController = {
             const{remarks} = req.body;
             console.log("id + res remark "+  typeof _id);
             const addRemarkService = await service.addRemarkService(_id, remarks)   
-            res.status(200).send("remarks added "+addRemarkService)
+            res.status(200).send(addRemarkService)
 
         }catch(Error){
 
-            res.status(400).send("check client id "+ Error);
+            res.status(400).send(Error);
 
         }
     },
@@ -101,11 +101,11 @@ const clientController = {
             const {_id} = req.query
             console.log("params view remark "+ _id);
             const viewRemarkService = await service.viewRemarks(_id) 
-            res.status(200).send("view client Remarks "+ viewRemarkService)
+            res.status(200).send(viewRemarkService)
 
         }catch(Error){
 
-            res.status(400).send("Error in viewing remarks "+ Error)
+            res.status(400).send(Error)
 
         }
     },
@@ -142,8 +142,8 @@ const clientController = {
                 }]
             };
             res.status(200).json(enqDashBoard);
-        } catch (error) {
-            res.status(400).send(error + " errorr");
+        } catch (Error) {
+            res.status(400).send(Error);
         }
     }
 } 
