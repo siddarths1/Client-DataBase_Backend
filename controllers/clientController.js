@@ -125,8 +125,8 @@ const clientController = {
     async enquiryGraph(req, res) {
         try {
             console.log("onto cont graph");
-            console.log(req.body);
-            const enquiryResp = await service.getEnquiryCount(req.body);
+            console.log(req.body.start_date);
+            const enquiryResp = await service.getEnquiryCount(req);
             console.log(enquiryResp);
             // structuring the api format
             const enqDashBoard = {
@@ -151,8 +151,8 @@ const clientController = {
      async proposalGraph(req, res) { 
         try {
             console.log("onto cont graph");
-            console.log(req.body);
-            const proposalResp = await service.getProposalCount(req.body);
+            console.log(req.body.start_date);
+            const proposalResp = await service.getProposalCount(req);
             
             console.log(proposalResp);
             // structuring the api format

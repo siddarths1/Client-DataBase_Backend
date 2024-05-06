@@ -203,8 +203,8 @@ const ClientService = {
     },
     async getEnquiryCount(req) {
         try {
-            console.log("onto service " + req.start_date);
-            const startDate = req.start_date;
+            console.log("onto service " + req.body.start_date);
+            const startDate = req.body.start_date;
             const toCheckDate = new Date(startDate);
             console.log(toCheckDate);
             if (isNaN(toCheckDate)) {
@@ -220,8 +220,8 @@ const ClientService = {
     // PROPOSAL (Pavithra K)
     async getProposalCount(req) {
         try {
-            console.log("onto service " + req.start_date);
-            const startDate = req.start_date;
+            console.log("onto service " + req.body.start_date);
+            const startDate = req.body.start_date;
             const toCheckDate = new Date(startDate);
             console.log(toCheckDate);
             if (isNaN(toCheckDate)) {
