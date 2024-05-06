@@ -28,10 +28,10 @@ router.get('/login/viewClients/viewRemark', clientController.viewRemark)
 // number of clients API with filters
 router.get('/login/dashboard/counts', clientController.dashboardCount)
 
-router.get('/login/dashboard/enquiryGraph', clientController.enquiryGraph)
+router.post('/login/dashboard/enquiryGraph', clientController.enquiryGraph)
 
 //proposal dashboard (pavithra)
-router.get('/login/dashboard/proposalGraph', clientController.proposalGraph)
+router.post('/login/dashboard/proposalGraph', clientController.proposalGraph)
 
 
 
