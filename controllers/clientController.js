@@ -145,7 +145,34 @@ const clientController = {
         } catch (Error) {
             res.status(400).send(Error);
         }
-    }
+    },
+
+    // proposal (pavithra K)
+     async proposalGraph(req, res) { 
+        try {
+            console.log("onto cont graph");
+            console.log(req.body);
+            const proposalResp = await service.getProposalCount(req.body);
+            
+            console.log(proposalResp);
+            // structuring the api format
+            const propDashBoard = {
+                labels: ['Yes', 'No'],
+                datasets: [{
+                    label: 'Proposal Dashboard',
+                    data: [proposalResp],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            res.status(200).json(propDashBoard);
+        } catch (error) {
+            res.status(400).send(error + " error");
+        }
+    },
 } 
 
 module.exports = clientController;

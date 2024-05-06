@@ -30,6 +30,9 @@ router.get('/login/dashboard/counts', clientController.dashboardCount)
 
 router.get('/login/dashboard/enquiryGraph', clientController.enquiryGraph)
 
+//proposal dashboard (pavithra)
+router.get('/login/dashboard/proposalGraph', clientController.proposalGraph)
+
 
 
 module.exports = router;

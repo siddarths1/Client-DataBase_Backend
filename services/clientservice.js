@@ -215,6 +215,23 @@ const ClientService = {
         } catch (error) {
             return error;
         }
+    },
+
+    // PROPOSAL (Pavithra K)
+    async getProposalCount(req) {
+        try {
+            console.log("onto service " + req.start_date);
+            const startDate = req.start_date;
+            const toCheckDate = new Date(startDate);
+            console.log(toCheckDate);
+            if (isNaN(toCheckDate)) {
+                throw new Error('Invalid date format');
+            }
+            const getpropCount = await clientmodel.getproposalCount(toCheckDate.toISOString());
+            return getpropCount;
+        } catch (error) {
+            return error;
+        }
     },    
 }
 
