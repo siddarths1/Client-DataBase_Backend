@@ -204,13 +204,17 @@ const ClientService = {
     async getEnquiryCount(req) {
         try {
             console.log("onto service " + req.body.start_date);
+            console.log("onto service " + req.body.end_date);
             const startDate = req.body.start_date;
-            const toCheckDate = new Date(startDate);
-            console.log(toCheckDate);
-            if (isNaN(toCheckDate)) {
+            const endDate = req.body.end_date;
+            const toStartDate = new Date(startDate);
+            const toEndDate = new Date(endDate);
+            console.log(toStartDate);
+            console.log(toEndDate);
+            if (isNaN(toStartDate) || isNaN(toEndDate)) {
                 throw new Error('Invalid date format');
             }
-            const getEnqCount = await clientmodel.getEnquiryCount(toCheckDate.toISOString());
+            const getEnqCount = await clientmodel.getEnquiryCount(toStartDate.toISOString(), toEndDate.toISOString());
             return getEnqCount;
         } catch (error) {
             return error;
@@ -221,13 +225,16 @@ const ClientService = {
     async getProposalCount(req) {
         try {
             console.log("onto service " + req.body.start_date);
+            console.log("onto service " + req.body.end_date);
             const startDate = req.body.start_date;
-            const toCheckDate = new Date(startDate);
-            console.log(toCheckDate);
-            if (isNaN(toCheckDate)) {
+            const endDate = req.body.end_date;
+            const toStartDate = new Date(startDate);
+            const toEndDate = new Date(endDate);
+            // console.log(toCheckDate);
+            if (isNaN(toStartDate) || isNaN(toEndDate) ) {
                 throw new Error('Invalid date format');
             }
-            const getpropCount = await clientmodel.getproposalCount(toCheckDate.toISOString());
+            const getpropCount = await clientmodel.getproposalCount(toStartDate.toISOString(), toEndDate.toISOString());
             return getpropCount;
         } catch (error) {
             return error;

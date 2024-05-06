@@ -126,6 +126,7 @@ const clientController = {
         try {
             console.log("onto cont graph");
             console.log(req.body.start_date);
+            console.log(req.body.end_date);
             const enquiryResp = await service.getEnquiryCount(req);
             console.log(enquiryResp);
             // structuring the api format
@@ -152,6 +153,7 @@ const clientController = {
         try {
             console.log("onto cont graph");
             console.log(req.body.start_date);
+            console.log(req.body.end_date);
             const proposalResp = await service.getProposalCount(req);
             
             console.log(proposalResp);
