@@ -56,7 +56,7 @@ const clientController = {
     },
 
     //to edit client's list ( pavithra ) 
-    async edit(req, res) {
+    async  edit(req, res) {
         console.log("*********req--------- 57",req.body);
         try {
             const{_id} = req.query

@@ -47,7 +47,7 @@ const ClientService = {
             console.log(filter+" filter is ");
             // setting up offset 
            
-
+ 
             // for searching specific data in list
             if(filter){
                 try{    
