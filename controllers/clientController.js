@@ -175,6 +175,19 @@ const clientController = {
             res.status(400).send(error + " error");
         }
     },
+
+    // 
+    async barChart(req, res) {
+        try {
+            console.log("Fetching bar chart data");
+            console.log(req.body.start_date);
+            const barChartData = await service.barChart(req);
+            res.status(200).json(barChartData);
+        } catch (error) {
+            res.status(400).send("Error fetching bar chart data: " + error.message);
+        }
+    },
+
 } 
 
 module.exports = clientController;

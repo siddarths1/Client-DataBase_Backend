@@ -239,7 +239,22 @@ const ClientService = {
         } catch (error) {
             return error;
         }
-    },    
+    },
+    //
+    async barChart(req, res){
+        try {
+            const startDate = req.body.start_date;
+            const endDate = req.body.end_date;
+            console.log("Fetching bar chart data");
+            console.log("Start Date:", startDate, "End Date:", endDate);  // Debugging logs
+            const barChartData = await clientmodel.getBarC44hartData(new Date(startDate).toISOString(), new Date(endDate).toISOString());
+            return barChartData;
+        } catch (error) {
+            console.error("Error fetching bar chart data in service:", error);
+            res.status(500).send('Error fetching bar chart data');
+        }
+    },
+     
 }
 
 module.exports = ClientService;

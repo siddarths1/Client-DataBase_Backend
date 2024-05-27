@@ -32,7 +32,8 @@ router.post('/login/dashboard/enquiryGraph', clientController.enquiryGraph)
 
 //proposal dashboard (pavithra)
 router.post('/login/dashboard/proposalGraph', clientController.proposalGraph)
-
+// Bar chart API
+router.get('/login/dashboard/barChart', clientController.barChart);
 
 
 module.exports = router;
